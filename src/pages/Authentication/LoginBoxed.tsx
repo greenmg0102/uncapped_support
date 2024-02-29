@@ -30,7 +30,7 @@ const LoginBoxed = () => {
         navigate('/');
     };
     const authTest = (provider: any) => {
-        return window.location.href = `http://https://api.uncappedtheory.com/api/v1/auth/${provider}/login`
+        return window.location.href = `https://api.uncappedtheory.com/api/v1/auth/${provider}/login`
     }
 
     return (
