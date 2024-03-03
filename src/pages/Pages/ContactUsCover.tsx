@@ -26,49 +26,49 @@ const ContactUsCover = () => {
 
     const submit = async () => {
 
-        if (userInfo.fullName.length === 0) {
-            return alert("Please insert your full name!", "info")
+        // if (userInfo.fullName.length === 0) {
+        //     return alert("Please insert your full name!", "info")
 
-        } else if (userInfo.mail.length === 0) {
-            return alert("Please insert your full mail!", "info")
+        // } else if (userInfo.mail.length === 0) {
+        //     return alert("Please insert your full mail!", "info")
 
-        } else if (userInfo.mail.length !== 0 && !ValidateEmail(userInfo.mail)) {
-            return alert("You have entered an invalid email address!", "info")
+        // } else if (userInfo.mail.length !== 0 && !ValidateEmail(userInfo.mail)) {
+        //     return alert("You have entered an invalid email address!", "info")
 
-        } else if (userInfo.phone.length === 0) {
-            return alert("Please insert phonenumber!", "info")
+        // } else if (userInfo.phone.length === 0) {
+        //     return alert("Please insert phonenumber!", "info")
 
-        } else if (userInfo.phone.length !== 0 && !validateFullPhoneNumber(userInfo.phone)) {
-            return alert("You have entered an invalid phone number!", "info")
+        // } else if (userInfo.phone.length !== 0 && !validateFullPhoneNumber(userInfo.phone)) {
+        //     return alert("You have entered an invalid phone number!", "info")
 
-        } else if (userInfo.type.length === 0) {
-            return alert("Please select support type!", "info")
+        // } else if (userInfo.type.length === 0) {
+        //     return alert("Please select support type!", "info")
 
-        } else if (userInfo.subject.length === 0) {
-            return alert("Please type your subject!", "info")
+        // } else if (userInfo.subject.length === 0) {
+        //     return alert("Please type your subject!", "info")
 
-        } else if (userInfo.content.length === 0) {
-            return alert("Please description your question!", "info")
+        // } else if (userInfo.content.length === 0) {
+        //     return alert("Please description your question!", "info")
 
-        } else {
+        // } else {
 
-            let result = await support(userInfo)
+        let result = await support(userInfo)
 
-            if (result.isOk) {
-                alert("Successfully submitting!", "success")
-                setUserInfo({
-                    fullName: "",
-                    mail: "",
-                    phone: "",
-                    type: "platform",
-                    subject: "",
-                    content: ""
-                })
-                return
-            }
-            else return alert("Failed submitting!", "danger")
+        if (result.isOk) {
+            alert("Successfully submitting!", "success")
+            setUserInfo({
+                fullName: "",
+                mail: "",
+                phone: "",
+                type: "platform",
+                subject: "",
+                content: ""
+            })
+            return
         }
+        else return alert("Failed submitting!", "danger")
     }
+    // }
 
     function ValidateEmail(email: string) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true;
