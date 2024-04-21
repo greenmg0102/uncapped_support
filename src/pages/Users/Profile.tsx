@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { profileGet, summaryProGet } from '../../utils/functions/usage/profile/profile'
 import { accessTokenDecode } from '../../utils/middlewareFunction/accessTokenDecode'
@@ -14,6 +15,7 @@ import SignLog from './profileComponent/SignLog'
 const Profile = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = useState({
         displayName: null,
@@ -40,23 +42,31 @@ const Profile = () => {
     }, [])
 
     useEffect(() => {
-        async function fetchData() {
-            let result = await summaryProGet("6596be9ddfae083621d4c326").then()
-            setPokerTypeCount(result.summary)
-            setProPlan(result.proPlan)
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
+
+        if (accessToken !== null && refreshToken !== null) {
+            async function fetchData() {
+                let result = await summaryProGet(accessTokenDecode(accessToken)).then()
+                setPokerTypeCount(result.summary)
+                setProPlan(result.proPlan)
+            }
+            fetchData()
         }
-        fetchData()
     }, [])
 
     useEffect(() => {
         dispatch(setPageTitle('Profile'));
-    });
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (accessToken === null && refreshToken === null) navigate('/auth/boxed-signin');
+    }, [])
 
     return (
         <div className="pt-5">
             <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-5">
                 <UserPersonal userInfo={userInfo} />
-                <div className="panel lg:col-span-2 xl:col-span-3 flex justify-between items-start">
+                <div className="panel lg:col-span-2 xl:col-span-3 flex justify-between items-start flex-wrap">
                     <Summary pokerTypeCount={pokerTypeCount} />
                     {proPlan === null || proPlan === undefined ? null : <ProPlan proPlan={proPlan} />}
                 </div>

@@ -6,7 +6,7 @@ export default function UserPersonal({ userInfo }: any) {
         <div className="panel">
             <div className="flex items-center justify-between mb-5">
                 <h5 className="font-semibold text-lg dark:text-white-light">Profile</h5>
-                <Link to="/users/user-account-settings" className="ltr:ml-auto rtl:mr-auto btn btn-primary p-2 rounded-full">
+                {/* <Link to="/users/user-account-settings" className="ltr:ml-auto rtl:mr-auto btn btn-primary p-2 rounded-full">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
                         <path opacity="0.5" d="M4 22H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                         <path
@@ -21,11 +21,11 @@ export default function UserPersonal({ userInfo }: any) {
                             strokeWidth="1.5"
                         />
                     </svg>
-                </Link>
+                </Link> */}
             </div>
             <div className="mb-5">
                 <div className="flex flex-col justify-center items-center">
-                    <img src={userInfo.socialAvatar} alt="img" className="w-24 h-24 rounded-full object-cover  mb-5" />
+                    <img src={userInfo.socialAvatar} alt="img" className="w-24 h-24 rounded-full object-cover mb-5" />
                     <p className="font-semibold text-primary text-xl">
                         {userInfo.displayName !== null ? userInfo.displayName : userInfo.firstName + " " + userInfo.lastName}
                     </p>
@@ -40,39 +40,8 @@ export default function UserPersonal({ userInfo }: any) {
                         Premium
                     </li>
                     <li className="flex items-center gap-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 shrink-0">
-                            <path
-                                d="M2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                            />
-                            <path opacity="0.5" d="M7 4V2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                            <path opacity="0.5" d="M17 4V2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                            <path opacity="0.5" d="M2 9H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                        </svg>
-                        Jan 20, 1989
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 shrink-0">
-                            <path
-                                opacity="0.5"
-                                d="M5 8.51464C5 4.9167 8.13401 2 12 2C15.866 2 19 4.9167 19 8.51464C19 12.0844 16.7658 16.2499 13.2801 17.7396C12.4675 18.0868 11.5325 18.0868 10.7199 17.7396C7.23416 16.2499 5 12.0844 5 8.51464Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                d="M14 9C14 10.1046 13.1046 11 12 11C10.8954 11 10 10.1046 10 9C10 7.89543 10.8954 7 12 7C13.1046 7 14 7.89543 14 9Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                d="M20.9605 15.5C21.6259 16.1025 22 16.7816 22 17.5C22 19.9853 17.5228 22 12 22C6.47715 22 2 19.9853 2 17.5C2 16.7816 2.37412 16.1025 3.03947 15.5"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                            />
-                        </svg>
-                        New York, USA
+                        <svg width="20" height="20" viewBox="0 0 1024 1024" className="icon" version="1.1" fill="#71778F"><path d="M998.936064 240.238415L521.756297 4.775434a19.34316 19.34316 0 0 0-25.451526 0L19.125004 240.238415c-12.798482 0-19.125004 12.725763-19.125004 25.451527s6.326522 25.451527 19.125004 25.451526l477.179767 235.390263c6.399241 0 6.399241 6.399241 12.725763 6.399241s6.326522 0 12.725763-6.399241l375.37366-184.487209v267.24103c0 19.052286 12.798482 31.778049 31.850768 31.778049 19.125004 0 31.778049-12.725763 31.778049-31.778049V310.193754l38.17729-19.052286c12.798482 0 19.125004-12.725763 19.125004-25.451526s-6.326522-25.451527-19.125004-25.451527zM509.030534 462.902914L101.806107 265.689942 509.030534 68.40425l407.224427 197.285692L509.030534 462.902914z m279.966794-28.869303c19.052286 0 31.850768 12.725763 31.850767 31.778049v293.274306c0 6.326522-6.399241 19.052286-19.125004 25.451527A706.970693 706.970693 0 0 1 509.030534 848.16631c-108.132629 0-210.011455-19.125004-292.692557-63.628817-12.725763 0-19.125004-12.725763-19.125004-25.451527V465.81166c0-19.052286 12.798482-31.778049 31.850767-31.778049 19.125004 0 31.778049 12.725763 31.778049 31.778049v274.149302c140.056116 63.628817 356.321374 63.628817 496.37749 0v-274.149302c0-19.052286 12.653045-31.778049 31.778049-31.778049z" fill="##71778F" /></svg>
+                        <span className="text-grat-300 truncate">{userInfo && userInfo.role && userInfo.role[0] && userInfo.role[0].roleName}</span>
                     </li>
                     <li>
                         <button className="flex items-center gap-2">
@@ -91,80 +60,6 @@ export default function UserPersonal({ userInfo }: any) {
                                 />
                             </svg>
                             <span className="text-primary truncate">{userInfo.user.email}</span>
-                        </button>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5.00659 6.93309C5.04956 5.7996 5.70084 4.77423 6.53785 3.93723C7.9308 2.54428 10.1532 2.73144 11.0376 4.31617L11.6866 5.4791C12.2723 6.52858 12.0372 7.90533 11.1147 8.8278M17.067 18.9934C18.2004 18.9505 19.2258 18.2992 20.0628 17.4622C21.4558 16.0692 21.2686 13.8468 19.6839 12.9624L18.5209 12.3134C17.4715 11.7277 16.0947 11.9628 15.1722 12.8853"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                opacity="0.5"
-                                d="M5.00655 6.93311C4.93421 8.84124 5.41713 12.0817 8.6677 15.3323C11.9183 18.5829 15.1588 19.0658 17.0669 18.9935M15.1722 12.8853C15.1722 12.8853 14.0532 14.0042 12.0245 11.9755C9.99578 9.94676 11.1147 8.82782 11.1147 8.82782"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                            />
-                        </svg>
-                        <span className="whitespace-nowrap" dir="ltr">
-                            +1 (530) 555-12121
-                        </span>
-                    </li>
-                </ul>
-                <ul className="mt-7 flex items-center justify-center gap-2">
-                    <li>
-                        <button className="btn btn-info flex items-center justify-center rounded-full w-10 h-10 p-0">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="w-5 h-5"
-                            >
-                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                            </svg>
-                        </button>
-                    </li>
-                    <li>
-                        <button className="btn btn-danger flex items-center justify-center rounded-full w-10 h-10 p-0">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
-                                <path
-                                    d="M3.33946 16.9997C6.10089 21.7826 12.2168 23.4214 16.9997 20.66C18.9493 19.5344 20.3765 17.8514 21.1962 15.9286C22.3875 13.1341 22.2958 9.83304 20.66 6.99972C19.0242 4.1664 16.2112 2.43642 13.1955 2.07088C11.1204 1.81935 8.94932 2.21386 6.99972 3.33946C2.21679 6.10089 0.578039 12.2168 3.33946 16.9997Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                />
-                                <path
-                                    opacity="0.5"
-                                    d="M16.9497 20.5732C16.9497 20.5732 16.0107 13.9821 14.0004 10.5001C11.99 7.01803 7.05018 3.42681 7.05018 3.42681M7.57711 20.8175C9.05874 16.3477 16.4525 11.3931 21.8635 12.5801M16.4139 3.20898C14.926 7.63004 7.67424 12.5123 2.28857 11.4516"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-                        </button>
-                    </li>
-                    <li>
-                        <button className="btn btn-dark flex items-center justify-center rounded-full w-10 h-10 p-0">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="w-5 h-5"
-                            >
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                            </svg>
                         </button>
                     </li>
                 </ul>

@@ -67,7 +67,6 @@ const Profile = () => {
     };
 
     const handleOnEditButton = (item) => {
-        //console.log('item values in edit',item.id ,'**',item.data());
         navigation.navigate('EditUserInfo',
             {
                 userId: item,

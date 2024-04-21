@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import App from '../../App';
 import { IRootState } from '../../store';
 import { toggleSidebar } from '../../store/themeConfigSlice';
+import Footer from './Footer';
 import Header from './Header';
+import ContactUs from './ContactUs';
+import Sidebar from './Sidebar';
+import Portals from '../../components/Portals';
 import styles from './layout.module.css'
 import clsx from 'clsx'
 
@@ -45,8 +49,11 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
 
     return (
         <App>
+            {/* BEGIN MAIN CONTAINER */}
             <div className="relative">
+                {/* sidebar menu overlay */}
                 <div className={`${(!themeConfig.sidebar && 'hidden') || ''} fixed inset-0 bg-[black]/60 z-50 lg:hidden`} onClick={() => dispatch(toggleSidebar())}></div>
+                {/* screen loader */}
                 {showLoader && (
                     <div className="screen_loader fixed inset-0 bg-[#fafafa] dark:bg-[#060818] z-[60] grid place-content-center animate__animated">
                         <svg width="64" height="64" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#4361ee">
@@ -69,14 +76,33 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
                     )}
                 </div>
 
+                {/* BEGIN APP SETTING LAUNCHER */}
+                {/* <Setting /> */}
+                {/* END APP SETTING LAUNCHER */}
+
                 <div className={`${themeConfig.navbar} main-container text-black dark:text-white-dark min-h-screen`}>
+                    {/* BEGIN SIDEBAR */}
+                    <Sidebar />
+                    {/* END SIDEBAR */}
+
                     <div className={clsx("main-content flex flex-col min-h-screen", styles.mountain)}>
+                        {/* BEGIN TOP NAVBAR */}
                         <Header />
+                        {/* END TOP NAVBAR */}
+
+                        {/* BEGIN CONTENT AREA */}
                         <Suspense>
-                            <div className={`${themeConfig.animation}`}>{children}</div>
+                            <div className={`${themeConfig.animation} p-6 animate__animated`}>{children}</div>
                         </Suspense>
+                        {/* END CONTENT AREA */}
+
+                        {/* BEGIN FOOTER */}
+                        <Footer />
+                        {/* END FOOTER */}
+                        <Portals />
                     </div>
                 </div>
+                <ContactUs />
             </div>
         </App>
     );

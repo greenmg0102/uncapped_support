@@ -1,7 +1,6 @@
 
 
 export default function dividerLeftAndRight(list: any): any {
-    // console.log("activeNumber", activeNumber);
     let real = nodeStatus(list)
 
     if (real.length === 7 || real.length === 8) {

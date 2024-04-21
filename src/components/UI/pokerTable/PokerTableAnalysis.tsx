@@ -7,12 +7,6 @@ import clsx from 'clsx';
 
 const PokerTableAnalysis = ({ maxSeat, nodeList, activePlayer, currentOption, activeNodeNumber, bettingList }: any) => {
 
-    // console.log("nodeList", nodeList);
-    // console.log("activePlayer", activePlayer);
-    // console.log("currentOption", currentOption);
-    // console.log("activeNodeNumber", activeNodeNumber);
-    // console.log("bettingList", bettingList);
-
     let playSeatInfo = positionSet[maxSeat]
 
     const retrunBB = (index: any) => {

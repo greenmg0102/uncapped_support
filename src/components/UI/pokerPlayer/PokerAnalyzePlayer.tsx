@@ -2,13 +2,6 @@ import clsx from 'clsx'
 
 const PokerAnalyzePlayer = ({ seat, activePlayer, status, currentOption, bettingList }: any) => {
 
-    // console.log("seat", seat);
-    // console.log("activePlayer", activePlayer);
-    // console.log("status", status);
-    // console.log("currentOption", currentOption);
-    // console.log("bettingList", bettingList);
-    
-
     const stackSizeFormat = (type: any, stack: any) => {
         return stack > 398750 ? 40 : stack === 0 ? type === 'total' ? 0 : undefined : (stack / 10000).toFixed(1)
         // return stack === 398750 ? 40 : stack === 0 ? type === 'total' ? 0 : undefined : (stack / 10000).toFixed(1)
@@ -28,7 +21,6 @@ const PokerAnalyzePlayer = ({ seat, activePlayer, status, currentOption, betting
         if (seat === "BB") return stackSizeFormat('option', currentOption.stackSize - count - 10000)
 
         return stackSizeFormat('total', currentOption.stackSize - count)
-        // return stackSizeFormat('option', currentOption.stackSize - count)
     }
 
     return (

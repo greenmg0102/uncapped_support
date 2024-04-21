@@ -15,7 +15,6 @@ export const macePairSort = (reportingResult: any, userInfoResult: any, action: 
     let differenceObjectOffSuited: any = {}
     let offSuitedX: any = []
 
-
     Object.keys(reportingResult).forEach((key: any) => {
 
         if (key.length === 2) {
@@ -28,7 +27,8 @@ export const macePairSort = (reportingResult: any, userInfoResult: any, action: 
             let difference = userTotalValue === 0 ? 0 : reportingValue - (userValue / userTotalValue) * 100
 
             reportObject[key] = reportingValue
-            userObject[key] = (userValue / userTotalValue) * 100
+            userObject[key] = userTotalValue === 0 ? 0 : (userValue / userTotalValue) * 100
+
             differenceObject[key] = difference
 
         }
@@ -44,7 +44,8 @@ export const macePairSort = (reportingResult: any, userInfoResult: any, action: 
                 let difference = userTotalValue === 0 ? 0 : reportingValue - (userValue / userTotalValue) * 100
 
                 reportObjectSuited[key] = reportingValue
-                userObjectSuited[key] = (userValue / userTotalValue) * 100
+                userObjectSuited[key] = userTotalValue === 0 ? 0 : (userValue / userTotalValue) * 100
+
                 differenceObjectSuited[key] = difference
             }
         }
@@ -61,7 +62,8 @@ export const macePairSort = (reportingResult: any, userInfoResult: any, action: 
                 let difference = userTotalValue === 0 ? 0 : reportingValue - (userValue / userTotalValue) * 100
 
                 reportObjectOffSuited[key] = reportingValue
-                userObjectOffSuited[key] = (userValue / userTotalValue) * 100
+                userObjectOffSuited[key] = userTotalValue === 0 ? 0 : (userValue / userTotalValue) * 100
+
                 differenceObjectOffSuited[key] = difference
             }
         }
@@ -101,7 +103,6 @@ export const macePairSort = (reportingResult: any, userInfoResult: any, action: 
     }
 };
 
-
 export const distinguishAction = (array: any, type: any): any => {
 
     if (type === 'fold') return array[0]
@@ -109,7 +110,6 @@ export const distinguishAction = (array: any, type: any): any => {
     if (type === 'raise') return array.length === 1 || array.length === 3 ? array[1] : array[2]
     if (type === 'allin') return array.length === 1 || array.length === 3 ? array[2] : array[3]
 }
-
 
 export const sorting = (obj: any): any => {
 

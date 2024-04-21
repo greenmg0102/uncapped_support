@@ -1,27 +1,64 @@
 
-import { hero8Site } from '../../../utils/reference/playCardColor'
-
 export function scatterGet(main: any, user: any, action: any, type: any): any {
 
-    let bufferList: any = []
+    let real: any = {}
+    let series: any = []
 
-    Object.keys(user).forEach((key: any) => {
+    user.forEach((item: any) => {
 
-        if (main.filter((item: any) => item.position === user[key].position && item.stack === user[key].stack).length > 0) {
+        let currentFocus = series.findIndex((each: any) => each.name === item.position)
 
-            let mainDataCorresponding = main.find((item: any) => item.position === user[key].position && item.stack === user[key].stack).handResult
-            let userFrenquency = userDataAnalysis(user[key].handResult, type)
+        if (currentFocus === -1) {
+
+            let bufferList: any = {}
+            bufferList.type = 'rangeArea'
+            bufferList.name = item.position
+
+            let bufferData: any = []
+
+            if (item.position === bufferList.name) {
+
+                let ydeviation: any = [0, 0]
+
+                let mainDataCorresponding = main.find((item: any) => item.position === item.position && item.stack === item.stack).handResult
+                let userFrenquency = userDataAnalysis(item.handResult, type)
+                let mainFrenquency = mainDataAnalysis(mainDataCorresponding, type)
+
+                ydeviation[0] = Math.floor(userFrenquency * 10000) / 100
+                ydeviation[1] = Math.floor(mainFrenquency * 10000) / 100
+
+                bufferData.push({
+                    x: item.stack.toString() === "398750" ? "40" : item.stack.toString(),
+                    y: ydeviation
+                })
+            }
+
+            bufferList.data = bufferData
+            series.push(bufferList)
+
+        } else {
+
+            let currentData = series[currentFocus].data
+            let ydeviation: any = [0, 0]
+
+            let mainDataCorresponding = main.find((item: any) => item.position === item.position && item.stack === item.stack).handResult
+            let userFrenquency = userDataAnalysis(item.handResult, type)
             let mainFrenquency = mainDataAnalysis(mainDataCorresponding, type)
 
-            bufferList.push({
-                x: user[key].stack === 398750 ? 40 : user[key].stack,
-                y: Number(Object.keys(hero8Site).filter((each: any) => hero8Site[each] === user[key].position)[0]),
-                z: Math.abs(mainFrenquency - userFrenquency) * 100
+            ydeviation[0] = Math.floor(userFrenquency * 10000) / 100
+            ydeviation[1] = Math.floor(mainFrenquency * 10000) / 100
+
+            currentData.push({
+                x: item.stack.toString(),
+                y: ydeviation
             })
+            series[currentFocus].data = currentData;
         }
     })
 
-    return bufferList
+    real.series = series
+
+    return real
 }
 
 export function userDataAnalysis(hand: any, type: any): any {

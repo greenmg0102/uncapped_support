@@ -1,91 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setPageTitle, toggleRTL } from '../../store/themeConfigSlice';
 import Dropdown from '../../components/Dropdown';
 import { IRootState } from '../../store';
 import i18next from 'i18next';
-import withReactContent from 'sweetalert2-react-content';
-import Swal from 'sweetalert2';
-import { support } from '../../utils/functions/support'
 
 const ContactUsCover = () => {
-
-    const MySwal = withReactContent(Swal);
-
     const dispatch = useDispatch();
-
-    const [userInfo, setUserInfo] = useState({
-        fullName: "",
-        mail: "",
-        phone: "",
-        type: "platform",
-        subject: "",
-        content: ""
-    })
-
-    const submit = async () => {
-
-        if (userInfo.fullName.length === 0) {
-            return alert("Please insert your full name!", "info")
-
-        } else if (userInfo.mail.length === 0) {
-            return alert("Please insert your full mail!", "info")
-
-        } else if (userInfo.mail.length !== 0 && !ValidateEmail(userInfo.mail)) {
-            return alert("You have entered an invalid email address!", "info")
-
-        } else if (userInfo.phone.length === 0) {
-            return alert("Please insert phonenumber!", "info")
-
-        } else if (userInfo.phone.length !== 0 && !validateFullPhoneNumber(userInfo.phone)) {
-            return alert("You have entered an invalid phone number!", "info")
-
-        } else if (userInfo.type.length === 0) {
-            return alert("Please select support type!", "info")
-
-        } else if (userInfo.subject.length === 0) {
-            return alert("Please type your subject!", "info")
-
-        } else if (userInfo.content.length === 0) {
-            return alert("Please description your question!", "info")
-
-        } else {
-
-            let result = await support(userInfo)
-
-            if (result.isOk) {
-                alert("Successfully submitting!", "success")
-                setUserInfo({
-                    fullName: "",
-                    mail: "",
-                    phone: "",
-                    type: "platform",
-                    subject: "",
-                    content: ""
-                })
-                return
-            }
-            else return alert("Failed submitting!", "danger")
-        }
-    }
-
-    function ValidateEmail(email: string) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true;
-        return false;
-    }
-
-    function validateFullPhoneNumber(phoneNumber: any) {
-        // var phonePattern = /^\(\d{3}\) \d{3}-\d{4}$/;
-        // return phonePattern.test(phoneNumber);
-        if (phoneNumber.length === 10) return true
-        else return false
-    }
-
     useEffect(() => {
         dispatch(setPageTitle('Contact Us Cover'));
     });
-
+    const navigate = useNavigate();
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const setLocale = (flag: string) => {
@@ -98,17 +24,9 @@ const ContactUsCover = () => {
     };
     const [flag, setFlag] = useState(themeConfig.locale);
 
-    const alert = (title: any, color: any) => {
-        MySwal.fire({
-            title: title,
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 2000,
-            showCloseButton: true,
-            customClass: { popup: `color-${color}` }
-        });
-    }
+    const submitForm = () => {
+        navigate('/');
+    };
 
     return (
         <div>
@@ -125,31 +43,17 @@ const ContactUsCover = () => {
                         <div className="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20"></div>
                         <div className="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
                             <Link to="/" className="w-48 block lg:w-72 ms-10">
-                                <img
-                                    className="w-20 ltr:-ml-1 rtl:-mr-1 inline"
-                                    src="/assets/images/logo.png"
-                                    alt="logo"
-                                />
-                                <img
-                                    className="w-48 text-2xl ltr:ml-1.5 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300"
-                                    src="/assets/images/mark.png"
-                                    alt="mark"
-                                />
+                                <img src="/assets/images/auth/logo-white.svg" alt="Logo" className="w-full" />
                             </Link>
                             <div className="mt-24 hidden w-full max-w-[430px] lg:block">
-                                <img
-                                    src="/assets/images/auth/contact-us.svg"
-                                    alt="Cover Image"
-                                    className="w-full"
-                                />
+                                <img src="/assets/images/auth/contact-us.svg" alt="Cover Image" className="w-full" />
                             </div>
                         </div>
                     </div>
                     <div className="relative flex w-full flex-col items-center justify-center gap-6 px-4 pb-16 pt-6 sm:px-6 lg:max-w-[667px]">
                         <div className="flex w-full max-w-[440px] items-center gap-2 lg:absolute lg:end-6 lg:top-6 lg:max-w-full">
-                            <Link to="/" className="main-logo flex items-end shrink-0 block lg:hidden">
-                                <img className="w-12 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo.png" alt="logo" />
-                                <img className="w-36 text-2xl ltr:ml-1.5 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300" src="/assets/images/mark.png" alt="mark" />
+                            <Link to="/" className="w-8 block lg:hidden">
+                                <img src="/assets/images/logo.svg" alt="Logo" className="mx-auto w-10" />
                             </Link>
                             <div className="dropdown ms-auto w-max">
                                 <Dropdown
@@ -201,9 +105,9 @@ const ContactUsCover = () => {
                                 <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Contact us</h1>
                                 <p className="text-base font-bold leading-normal text-white-dark">Submit your queries and we will get back to you as soon as possible.</p>
                             </div>
-                            <div className="space-y-5">
+                            <form className="space-y-5" onSubmit={submitForm}>
                                 <div className="relative text-white-dark">
-                                    <input id="Name" type="text" placeholder="Name" value={userInfo.fullName} className="form-input ps-10 placeholder:text-white-dark" onChange={(e: any) => setUserInfo({ ...userInfo, fullName: e.target.value })} />
+                                    <input id="Name" type="text" placeholder="Name" className="form-input ps-10 placeholder:text-white-dark" />
                                     <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <circle cx="9" cy="4.5" r="3" fill="#888EA8" />
@@ -216,7 +120,7 @@ const ContactUsCover = () => {
                                     </span>
                                 </div>
                                 <div className="relative text-white-dark">
-                                    <input id="Email" type="email" placeholder="Email" value={userInfo.mail} className="form-input ps-10 placeholder:text-white-dark" onChange={(e: any) => setUserInfo({ ...userInfo, mail: e.target.value })} />
+                                    <input id="Email" type="email" placeholder="Email" className="form-input ps-10 placeholder:text-white-dark" />
                                     <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <path
@@ -232,7 +136,7 @@ const ContactUsCover = () => {
                                     </span>
                                 </div>
                                 <div className="relative text-white-dark">
-                                    <input id="Phone" type="text" placeholder="Phone" value={userInfo.phone} className="form-input ps-10 placeholder:text-white-dark" onChange={(e: any) => setUserInfo({ ...userInfo, phone: e.target.value })} />
+                                    <input id="Phone" type="text" placeholder="Phone" className="form-input ps-10 placeholder:text-white-dark" />
                                     <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <path
@@ -254,7 +158,7 @@ const ContactUsCover = () => {
                                     </span>
                                 </div>
                                 <div className="relative text-white-dark">
-                                    <input id="Subject" type="text" placeholder="Subject" value={userInfo.subject} className="form-input ps-10 placeholder:text-white-dark" onChange={(e: any) => setUserInfo({ ...userInfo, subject: e.target.value })} />
+                                    <input id="Subject" type="text" placeholder="Subject" className="form-input ps-10 placeholder:text-white-dark" />
                                     <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -270,7 +174,7 @@ const ContactUsCover = () => {
                                     </span>
                                 </div>
                                 <div className="relative text-white-dark">
-                                    <textarea id="Textarea" rows={4} value={userInfo.content} className="form-textarea resize-none ps-10 placeholder:text-white-dark" onChange={(e: any) => setUserInfo({ ...userInfo, content: e.target.value })} placeholder="Message"></textarea>
+                                    <textarea id="Textarea" rows={4} className="form-textarea resize-none ps-10 placeholder:text-white-dark" placeholder="Message"></textarea>
                                     <span className="absolute start-4 top-2.5">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -293,12 +197,12 @@ const ContactUsCover = () => {
                                         </svg>
                                     </span>
                                 </div>
-                                <button type="submit" className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]" onClick={submit}>
+                                <button type="submit" className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
                                     Submit
                                 </button>
-                            </div>
+                            </form>
                         </div>
-                        <p className="absolute bottom-6 w-full text-center dark:text-white">© {new Date().getFullYear()}.Uncapped Theory All Rights Reserved.</p>
+                        <p className="absolute bottom-6 w-full text-center dark:text-white">© {new Date().getFullYear()}.VRISTO All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

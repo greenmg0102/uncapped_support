@@ -8,7 +8,6 @@ export function actionNodeDistinguish(handData: any, userTab: any): any {
         if (userTab === 3) return handData.callNode
         if (userTab === 2) return handData.raiseNode
         if (userTab === 1) return handData.allinNode
-        if (userTab === 0) return [...handData.foldNode, ...handData.callNode, ...handData.raiseNode, ...handData.allinNode]
+        if (userTab === 0) return [...new Set([...handData.foldNode, ...handData.callNode, ...handData.raiseNode, ...handData.allinNode])]
     }
-
 }
